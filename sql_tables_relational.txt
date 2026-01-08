@@ -1,0 +1,26 @@
+CREATE TABLE music (
+    id SERIAL PRIMARY KEY,
+    title TEXT NOT NULL,
+    cover_img TEXT,
+    year_released INTEGER,
+    release_type TEXT NOT NULL CHECK (
+        release_type IN ('studio_album', 'bootleg', 'single')
+    )
+);
+
+
+CREATE TABLE studio_albums (
+    music_id INT PRIMARY KEY REFERENCES music(id),
+    album_genre TEXT
+);
+
+CREATE TABLE bootlegs (
+    music_id INT PRIMARY KEY REFERENCES music(id),
+    recording_location TEXT,
+    quality TEXT
+);
+
+CREATE TABLE singles (
+    music_id INT PRIMARY KEY REFERENCES music(id),
+    billboard_hot_100_position INTEGER
+);
