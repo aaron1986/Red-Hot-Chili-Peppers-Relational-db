@@ -46,4 +46,13 @@
      rhcp_music_db=> \dt </br>
      rhcp_music_db=> SELECT * FROM music LIMIT 5;</br>
 
-(23) 
+(23) I created a .env file and added the sensitive data to it
+
+(24) I added the .env to the .gitignore file
+
+(25) I added the following code to my index.js </br>
+  user: process.env.DB_USER, </br>
+  host: process.env.DB_HOST, </br>
+  database: process.env.DB_NAME, </br>
+  password: process.env.DB_PASSWORD, </br>
+  port: Number(process.env.DB_PORT),  </br>
