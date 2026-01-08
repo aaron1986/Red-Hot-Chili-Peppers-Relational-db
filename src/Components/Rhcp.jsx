@@ -3,13 +3,12 @@ import { useEffect, useState } from "react";
 export default function Rhcp() {
   const [music, setMusic] = useState([]);
 
-useEffect(() => {
-  fetch(`${import.meta.env.VITE_API_URL}/api/albums`)
+  useEffect(() => {
+  fetch("http://localhost:9090/api/music")
     .then((res) => res.json())
     .then((data) => setMusic(data.music))
     .catch((err) => console.error(err));
 }, []);
-
 
   return (
     <div className="albums_page">
