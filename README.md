@@ -58,3 +58,7 @@
   port: Number(process.env.DB_PORT),  </br>
 
 (26) New branch created called supabase
+
+(27) I uploaded the database tables to supabase
+
+(28) 

@@ -1,14 +1,29 @@
 import { useEffect, useState } from "react";
+import supabase from "../../backend/config/supabase.client";
 
 export default function Rhcp() {
   const [music, setMusic] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-  fetch("http://localhost:9090/api/music")
-    .then((res) => res.json())
-    .then((data) => setMusic(data.music))
-    .catch((err) => console.error(err));
-}, []);
+    const fetchMusic = async () => {
+      const { data, error } = await supabase
+        .from("music")
+        .select("id, title, cover_img, year_released, release_type")
+        .order("year_released", { ascending: true });
+
+      if (error) {
+        console.error(error);
+        setError(error.message);
+      } else {
+        setMusic(data);
+      }
+    };
+
+    fetchMusic();
+  }, []);
+
+  if (error) return <p>{error}</p>;
 
   return (
     <div className="albums_page">
@@ -27,9 +42,9 @@ export default function Rhcp() {
               />
             )}
 
-             <p className="album_page_description">
-              Release type: {item.release_type}
-              </p>
+            <p className="album_page_description">
+              Release type: {item.release_type.replace("_", " ")}
+            </p>
 
             <p className="album_page_description">
               Released in {item.year_released}
