@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Rhcp from './Components/Rhcp.jsx'
-import supabase from '../backend/config/supabase.client.js'
+import supabase from '../backend/supabase.client.js'
 import './App.css'
 
 function App() {
