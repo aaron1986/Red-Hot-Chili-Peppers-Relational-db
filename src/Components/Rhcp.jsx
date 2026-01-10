@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import supabase from "../../backend/config/supabase.client";
+import supabase from "../../backend/supabase.client";
 
 export default function Rhcp() {
   const [music, setMusic] = useState([]);
